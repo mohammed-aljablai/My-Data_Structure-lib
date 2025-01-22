@@ -23,19 +23,6 @@ bool queue::enqueue(int no){
   } catch(const std::exception x){ return false;}
 }
 
-// split
-node queue::splitQ(int index){
-  try{
-    e=head;
-    while (e!=NULL){
-      cout<< e<< " is "<< e->index <<endl;
-      e= e->next;
-    }
-
-  }
-  catch(const std::exception x) {return queue();}
-}
-
 // Delete Element
 bool queue::disEnqueue(){
   try{
@@ -69,4 +56,49 @@ int queue::getLength(){
     e= e->next;
   }
   return i;
+}
+
+// Additional methods
+// slice
+queue queue::sliceQ(int index){
+  try{
+    queue newElements;
+    e=head;
+    while (e!=NULL && e->index!=index){
+      newElements.enqueue(index);
+      e= e->next;
+      // node *goDel = head;
+      // head = head->next;
+      // delete goDel;
+    }
+    return newElements;
+  }
+  catch(const std::exception x) {return queue();}
+}
+// Delete primary number
+bool queue::delPrimaryNo(){
+  try{
+    e=head;
+    while (e!=NULL){
+      if (isPrimary(e->next->index)){
+        node* goDel = e->next;
+        e->next = e->next->next;
+        delete goDel;
+      }
+      e= e->next;
+    }
+    return true;
+  }
+  catch(const std::exception& e){
+    std::cerr << e.what() << '\n';
+    return false;
+  } 
+}
+// primary number checker
+bool isPrimary(int no){
+  if (no==1) return false;
+  if (no==2) return true;
+  for (int i = 2; i < no; i++)
+    if(no%i) return false;
+  return true;
 }

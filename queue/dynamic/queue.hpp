@@ -20,11 +20,13 @@ public:
   bool enqueue(int no);  // done
   // Delete Element
   bool disEnqueue(); // done
-  // split queue
-  node splitQ(int index);
   // Print Element
   bool PrintList(); // done
   // get Length
   int getLength(); // done
+  // Additional methods
+  // split queue
+  queue sliceQ(int index);
+  bool delPrimaryNo();
 };
 #endif
