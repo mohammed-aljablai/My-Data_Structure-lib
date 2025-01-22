@@ -113,3 +113,13 @@ int doublelinkedlist::getLength(){
   }
   return i;
 }
+
+// Additional methods
+bool doublelinkedlist::spicalAdd(int index){
+try{
+  if(index%2==0) addToEnd(index);
+  else addToFirst(index);
+  return true;
+}
+catch(const std::exception& e){return false;}
+}

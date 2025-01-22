@@ -31,6 +31,9 @@ public:
   bool PrintList();
   // length
   int getLength();
+
+  // Additional methods
+  bool spicalAdd(int index);
 };
 
 #endif
