@@ -46,12 +46,12 @@ hello there, here is a library that I build while learning data structure in NU 
   - get length
 - queue
   - array
-    - insert
-    - delete
+    - enqueue
+    - disEnqueue
     - print
   - list
-    - insert
-    - delete
+    - enqueue
+    - disEnqueue
     - print
     - length
 - stack
