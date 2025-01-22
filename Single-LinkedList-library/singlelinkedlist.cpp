@@ -114,3 +114,63 @@ int singlelinkedlist::getLength(){
   }
   return i;
 }
+
+// Additional methods
+// swab 
+void swabber(int &no, int &no2){
+  int temp = no;
+  no = no2;
+  no2 = temp;
+  return;
+}
+// Order
+bool singlelinkedlist::orderElements(){
+  try{
+    node* i = head;
+    if (i==nullptr) return false;
+    while (true){
+      for(e = i->next; e!=nullptr; e= e->next){
+        if(i->index>e->index){
+          int temp = i->index;
+          i->index = e->index;
+          e->index = temp;
+        }
+      }
+      i= i->next;
+      if ((i->next) == (nullptr)) break;
+    }
+    return true;
+  }
+  catch(const std::exception& e){
+    std::cerr << e.what() << '\n';
+  }  
+}
+// revert
+bool singlelinkedlist::revert(){
+  try{
+    // This to get the last
+    node * last=head;
+    while (last->next!=nullptr){
+      last = last->next;
+    }
+    for (e = head; e !=nullptr; e=e->next){
+      if(e==head){
+        swabber(e->index, last->index);
+        continue;
+      }
+      node * beforeLast=head;
+      while (beforeLast->next!=last){
+        beforeLast = beforeLast->next;
+      }
+      if (e->next==beforeLast || e==beforeLast){
+        break;
+      }
+      swabber(e->index, beforeLast->index);
+    }
+    return true;
+  }
+  catch(const std::exception& e){
+    return false;
+    std::cerr << e.what() << '\n';
+  }
+}

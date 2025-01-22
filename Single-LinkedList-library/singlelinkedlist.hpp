@@ -28,5 +28,9 @@ public:
   bool PrintList(); // done
   // get Length
   int getLength(); // done
+
+  // Additional Methods
+  bool orderElements();
+  bool revert();
 };
 #endif
