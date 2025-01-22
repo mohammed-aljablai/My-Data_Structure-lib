@@ -24,5 +24,8 @@ public:
   bool PrintList(); // done
   // get Length
   int getLength(); // done
+  // Additionals methods
+  // delete repeated no
+  bool delRepeated();
 };
 #endif
