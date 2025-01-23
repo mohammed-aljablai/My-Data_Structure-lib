@@ -75,15 +75,34 @@ queue queue::sliceQ(int index){
   }
   catch(const std::exception x) {return queue();}
 }
+// primary number checker
+bool isPrimary(int no)
+{
+  if (no == 1)
+    return false;
+  if (no == 2)
+    return true;
+  for (int i = 2; i < no; i++)
+    if (no % i==0)
+      return false;
+  return true;
+}
+
 // Delete primary number
 bool queue::delPrimaryNo(){
   try{
     e=head;
-    while (e!=NULL){
+    if (isPrimary(head->index)){
+      node *goDel;
+      head = head->next;
+      delete goDel;
+    }
+    while (e->next!=NULL){
       if (isPrimary(e->next->index)){
         node* goDel = e->next;
         e->next = e->next->next;
         delete goDel;
+        continue;
       }
       e= e->next;
     }
@@ -93,12 +112,4 @@ bool queue::delPrimaryNo(){
     std::cerr << e.what() << '\n';
     return false;
   } 
-}
-// primary number checker
-bool isPrimary(int no){
-  if (no==1) return false;
-  if (no==2) return true;
-  for (int i = 2; i < no; i++)
-    if(no%i) return false;
-  return true;
 }
