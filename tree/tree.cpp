@@ -1,83 +1,71 @@
 #include "tree.hpp"
 
 // Here to make the methods
-node* tree::makeTree(node* left, int index, node* right){
-  e = new node();
-  e->left = left;
-  e->index = index;
-  e->right = right;
-  return e;
+#include <iostream>
+using namespace std;
+node* tree::insert(node *root, int value){
+  if (root == nullptr){
+    return new node(value);
+  }
+  if (value < root->index){
+    root->left = insert(root->left, value);
+  }
+  else if (value > root->index){
+    root->right = insert(root->right, value);
+  }
+  return root;
 }
 
-// here to insert into it
-bool tree::insertIntoTree(int index, node* root){
-  try{
-    if (root==NULL) root = makeTree(NULL, index, NULL);
-    else{
-      if(index<root->index)
-        insertIntoTree(index, root->left);
-      else
-        insertIntoTree(index, root->right);
-    }
-    return true;
-  }
-  catch(const std::exception& e){
-    std::cerr << e.what() << '\n';
-    return false;
-  }
-}
-
-// here to insert normally
-bool tree::insert(int index){
-  try{
-    insertIntoTree(index, root);
-    return true;
-  }
-  catch(const std::exception& e){
-    std::cerr << e.what() << '\n';
-    return false;
-  }
-}
-
-// prints methods
-  // first part
-void tree::preorder(node* root){
-  try{
-    cout << root->index;
+void tree::preorder(node *root){
+  if (root != nullptr){
+    std::cout << root->index << " ";
     preorder(root->left);
     preorder(root->right);
   }
-  catch(const std::exception& e){
-    std::cerr << e.what() << '\n';
-  }
 }
-void tree::inorder(node* root){
-  try{
+
+void tree::inorder(node *root){
+  if (root != nullptr){
     inorder(root->left);
-    cout << root->index;
+    std::cout << root->index << " ";
     inorder(root->right);
   }
-  catch(const std::exception& e){
-    std::cerr << e.what() << '\n';
+}
+
+void tree::postorder(node *root){
+  if (root != nullptr){
+    postorder(root->left);     
+    postorder(root->right);    
+    cout << root->index << " "; 
   }
 }
-void tree::postorder(node* root){
+
+bool tree::insert(int value){
   try{
-    postorder(root->left);
-    postorder(root->right);
-    cout << root->index;
+    mainRoot = insert(mainRoot, value);
+    return true;
   }
   catch(const std::exception& e){
     std::cerr << e.what() << '\n';
+    return false;
   }
+  
 }
-  // print
-void tree::printPreorder(){
-  preorder(root);
+
+void tree::preorder(){
+  cout << "Pre-order: ";
+  preorder(mainRoot);
+  cout << endl;
 }
-void tree::printInorder(){
-  inorder(root);
+
+void tree::inorder(){
+  cout << "In-order: ";
+  inorder(mainRoot);
+  cout << endl;
 }
-void tree::printPostorder(){
-  postorder(root);
+
+void tree::postorder(){
+  cout << "Post-order: ";
+  postorder(mainRoot);
+  cout << endl;
 }

@@ -8,22 +8,28 @@ struct node{
   node* left;
   int index;
   node* right;
+
+  node(int val){
+    index = val;
+    left = nullptr;
+    right = nullptr;
+  }
 };
+
 
 class tree{
   private:
-  node* root, *e;
-  bool insertIntoTree(int index, node *root);
-  node* makeTree(node* left, int index, node* right);
+  node *mainRoot = nullptr;
+  node* insert(node *root, int index);
   void preorder(node* root);
   void inorder(node* root);
   void postorder(node* root);
 
 public:
   bool insert(int index);
-  void printPreorder();
-  void printInorder();
-  void printPostorder();
+  void preorder();
+  void inorder();
+  void postorder();
 };
 
 #endif
