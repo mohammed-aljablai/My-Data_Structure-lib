@@ -62,21 +62,15 @@ bool stack::delRepeated(){
   try{
     e=head;
     while (e!=NULL){
-      for (node* i = e->next; i != NULL; i=i->next){
-        if(i==e->next && i->index==e->index){
-          e->next = i->next;
-          node* goDel = i;
-          delete i;
-        }else{
-          if(i->next->index==e->index){
-            node* goDel = i->next;
-            i->next = i->next->next;
-            delete goDel;
-          }
+      for (node* i = e; i->next != NULL; i=i->next){
+        if (i->next->index==e->index){
+          node* goDel = i->next;
+          i->next = goDel->next;
+          delete goDel;
         }
+        }
+        e= e->next;
       }
-      e= e->next;
-    }
     return true;
   }
   catch(const std::exception& e){
