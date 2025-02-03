@@ -8,6 +8,8 @@ int main(){
   cout << obj.enqueue(1) <<endl;
   cout << obj.enqueue(2) <<endl;
   cout << obj.enqueue(3) <<endl;
-  cout << obj.disEnqueue();
+  cout << obj.enqueue(4) <<endl;
+  obj.PrintList();
+  cout << obj.delPrimaryNo() << endl;
   obj.PrintList();
 }

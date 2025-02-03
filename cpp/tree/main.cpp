@@ -9,5 +9,6 @@ int main(){
   m.insert(5);
   m.insert(2);
   m.insert(6);
-  m.inorder();
+  // m.inorder();
+  m.postorder();
 }
