@@ -1,23 +1,18 @@
-#include <iostream>
+#include "../../Single-LinkedList-library/singlelinkedlist.cpp"
 using namespace std;
 
 #ifndef Date_h
 #define Date_h
 
-struct node{
-  int index;
-  node* next;  
-};
 
 
+template <typename T>
 class stack{
 private:
-  node *head=NULL, *e;
+  singlelinkedlist<T> myStack;
 public:
-  // Make Element
-  node* makeNode(int no, node* next); // done
   // Add Fuction
-  bool push(int no);  // done
+  bool push(T value);  // done
   // Delete Element
   bool pop(); // done
   // Print Element
@@ -26,6 +21,6 @@ public:
   int getLength(); // done
   // Additionals methods
   // delete repeated no
-  bool delRepeated();
+  // bool delRepeated();
 };
 #endif

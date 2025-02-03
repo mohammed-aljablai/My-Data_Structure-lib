@@ -1,61 +1,41 @@
 #include "stack.hpp"
 
-// Create a Node 
-node* stack::makeNode(int no, node* next){
-  e = new node();
-  e->index= no;
-  e->next = next;
-  return  e;
-}
-
 // Add Elements
   // Add to First
   // Add to End
-bool stack::push(int no){
+template <typename T>
+bool stack<T>::push(T value){
   try{
-    if (head==NULL) head=makeNode(no , NULL);
-    else{
-      e = makeNode(no,   head);
-      head = e;
-    }
+    myStack.addToEnd(value);
     return true;
   } catch(const std::exception x){ return false;}
 }
 
 // Delete Element
-bool stack::pop(){
+template <typename T>
+bool stack<T>::pop(){
   try{
-    if (head ==NULL) return false;
-    e = head;
-    head = head->next;
-    delete e;
+    myStack.deleteFromEnd();
     return true;
   } catch(const std::exception x){return false;}
 }
 
 // print Elements
-bool stack::PrintList(){
+template <typename T>
+bool stack<T>::PrintList(){
   try{
-    e=head;
-    while (e!=NULL){
-      cout<< e<< " is "<< e->index <<endl;
-      e= e->next;
-    }
+    myStack.PrintList();
     return true;
   }
   catch(const std::exception x) {return false;}
 }
 // get array length
-int stack::getLength(){
-  e=head;
-  int i=0;
-  while (e!=NULL){
-    i++;
-    e= e->next;
-  }
-  return i;
+template <typename T>
+int stack<T>::getLength(){
+  return myStack.getLength();
 }
 
+/*
 // Additional methods
 // delete a repeated methods
 bool stack::delRepeated(){
@@ -78,3 +58,4 @@ bool stack::delRepeated(){
     return false;
   } 
 }
+*/

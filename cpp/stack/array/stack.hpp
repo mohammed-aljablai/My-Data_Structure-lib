@@ -10,13 +10,15 @@ using namespace std;
 // };
 
 
+template <typename T>
 class stackArray{
 private:
-  int size, stack[size], top=-1;
+  int size, top=-1;
+  T stack[size];
 public:
   stackArray(int size);
   // Add Fuction
-  bool push(int no);
+  bool push(T value);
   // Delete Element
   int pop(); // done
   // Print Element

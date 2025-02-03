@@ -4,20 +4,17 @@ using namespace std;
 #ifndef queue_h
 #define queue_h
 
-// struct node{
-  // int index;
-  // node* next;  
-// };
 
-
+template <typename T>
 class queue{
 private:
-  int size, stack[size], top=-1, head=0;
+  int size, top=-1; 
+  T myQueue[size];
 public:
   // stackArray(int size);
   queue(int size);
   // Add Fuction
-  bool push(int no);
+  bool push(T value);
   // Delete Element
   int pop(); // done
   // Print Element

@@ -1,63 +1,41 @@
 #include "queue.hpp"
 
-// Create a Node 
-node* queue::makeNode(int no, node* next){
-  e = new node();
-  e->index= no;
-  e->next = next;
-  return  e;
-}
-
 // Add Elements
   // Add to First
   // Add to End
-bool queue::enqueue(int no){
+template <typename T>
+bool queue<T>::enqueue(T value){
   try{
-    if (head==NULL) head=tail=makeNode(no , NULL);
-    else{
-      e = makeNode(no,   NULL);
-      tail->next = e;
-      tail = e;
-    }
+    myQueue.addToEnd(value);
     return true;
   } catch(const std::exception x){ return false;}
 }
 
 // Delete Element
-bool queue::disEnqueue(){
+template <typename T>
+bool queue<T>::disEnqueue(){
   try{
-    if (head ==NULL) return false;
-    e = head;
-    head = head->next;
-    delete e;
+    myQueue.delFromFirst();
     return true;
   } catch(const std::exception x){return false;}
 }
 
 // print Elements
-bool queue::PrintList(){
+template <typename T>
+bool queue<T>::PrintList(){
   try{
-    e=head;
-    while (e!=NULL){
-      
-      cout<< e<< " is "<< e->index <<endl;
-      e= e->next;
-    }
+    myQueue.PrintList();
     return true;
   }
   catch(const std::exception x) {return false;}
 }
 // get array length
-int queue::getLength(){
-  e=head;
-  int i=0;
-  while (e!=NULL){
-    i++;
-    e= e->next;
-  }
-  return i;
+template <typename T>
+int queue<T>::getLength(){
+  return myQueue.getLength();
 }
 
+/*
 // Additional methods
 // slice
 queue queue::sliceQ(int index){
@@ -113,3 +91,4 @@ bool queue::delPrimaryNo(){
     return false;
   } 
 }
+*/

@@ -1,14 +1,16 @@
 #include "stack.hpp"
 
-stackArray::stackArray(int s){
+template <typename T>
+stackArray<T>::stackArray(int s){
   size = s;
 }
 
 // push
-bool stackArray::push(int no){
+template <typename T>
+bool stackArray<T>::push(T value){
   try{
     if(top==size-1) return false;
-    stack[++top] = no;
+    stack[++top] = value;
   }
   catch(const std::exception& e){
     std::cerr << e.what() << '\n';
@@ -18,22 +20,25 @@ bool stackArray::push(int no){
 }
 
 // pop
-int stackArray::pop(){
+template <typename T>
+int stackArray<T>::pop(){
   if (top==-1) return NULL;
   return stack[top--];
 }
 
 // print Elements
-bool stackArray::PrintList(){
+template <typename T>
+bool stackArray<T>::PrintList(){
   try{
     for (int i = 0; i < size; i++)
-      cout << stack[i];
+      cout <<i <<": " << stack[i];
     return true;
   }
   catch(const std::exception x) {return false;}
 }
 // get array length
-int stackArray::getLength(){
+template <typename T>
+int stackArray<T>::getLength(){
   int i;
   while(i<size)
     i++;

@@ -4,29 +4,35 @@ using namespace std;
 #ifndef doublelinkedlist_h
 #define doublelinkedlist_h
 
-struct node{
-  node* previous;
-  float index;
-  node* next;
+template <typename T>
+class  node{
+public:
+  node<T>* previous;
+  T data;
+  node<T>* next;
 };
-class doublelinkedlist
-{
+
+template <typename T>
+class doublelinkedlist{
 private:
-  node *head, *tail, *e;
+  node<T> *head;
+  node<T> *tail;
+  node<T> *e;
+  int size;
 public:
   doublelinkedlist(/* args */);
   ~doublelinkedlist();
 
   // make a new node
-  node* makeNode(float index, node* next, node* previous);
+  node<T>* makeNode(T& value, node<T>* next, node<T>* previous);
   // Add elements
-  bool addToFirst(float index);
-  bool addToEnd(float index);
-  bool addToMid(float index, float searchFor);
+  bool addToFirst(T value);
+  bool addToEnd(T value);
+  bool addToMid(int index, T value);
   // Del elements
   bool delFromFirst();
   bool delFromEnd();
-  bool delFromMid(float index);
+  bool delFromMid(int index);
   // print the list
   bool PrintList();
   // length

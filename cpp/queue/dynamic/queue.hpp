@@ -1,23 +1,17 @@
-#include <iostream>
+#include "../../Single-LinkedList-library/singlelinkedlist.cpp"
 using namespace std;
 
 #ifndef queue_h
 #define queue_h
 
-struct node{
-  int index;
-  node* next;  
-};
 
-
+template <typename T>
 class queue{
 private:
-  node *head=NULL, *e, *tail;
+  singlelinkedlist<T> myQueue;
 public:
-  // Make Element
-  node* makeNode(int no, node* next); // done
   // Add Fuction
-  bool enqueue(int no);  // done
+  bool enqueue(T value);  // done
   // Delete Element
   bool disEnqueue(); // done
   // Print Element
@@ -26,7 +20,7 @@ public:
   int getLength(); // done
   // Additional methods
   // split queue
-  queue sliceQ(int index);
-  bool delPrimaryNo();
+  // queue sliceQ(int index);
+  // bool delPrimaryNo();
 };
 #endif

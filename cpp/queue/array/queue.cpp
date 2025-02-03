@@ -1,14 +1,16 @@
 #include "queue.hpp"
 
-queue::queue(int s){
+template <typename T>
+queue<T>::queue(int s){
   size = s;
 }
 
 // push
-bool queue::push(int no){
+template <typename T>
+bool queue<T>::push(T value){
   try{
     if(top==size-1) return false;
-    stack[++top] = no;
+    stack[++top] = value;
   }
   catch(const std::exception& e){
     std::cerr << e.what() << '\n';
@@ -18,24 +20,27 @@ bool queue::push(int no){
 }
 
 // pop
-int queue::pop(){
+template <typename T>
+int queue<T>::pop(){
   if (top==-1) return NULL;
   return stack[head++];
 }
 
 // print Elements
-bool queue::PrintList(){
+template <typename T>
+bool queue<T>::PrintList(){
   try{
-    for (int i = 0; i < size; i++)
-      cout << stack[i];
+    for (int i = 0; i < top; i++)
+      cout << i <<": "<< stack[i];
     return true;
   }
   catch(const std::exception x) {return false;}
 }
 // get array length
-int queue::getLength(){
+template <typename T>
+int queue<T>::getLength(){
   int i;
   while(i<size)
     i++;
-  return i;
+  return size;
 }
