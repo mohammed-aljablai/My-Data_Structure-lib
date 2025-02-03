@@ -1,120 +1,154 @@
 #include "singlelinkedlist.hpp"
 
+// constructors
+template <typename T>
+singlelinkedlist<T>::singlelinkedlist(){
+  head = nullptr;
+  tail = nullptr;
+  e = nullptr;
+  size = 0;
+}
+
+
 // Create a Node 
-node* singlelinkedlist::makeNode(int no, node* next){
-  e = new node();
-  e->index= no;
+template <typename T>
+node<T>* singlelinkedlist<T>::makeNode(T& value, node<T>* next){
+  e = new node<T>();
+  e->data = value;
   e->next = next;
   return  e;
 }
 
 // Add Elements
   // Add to First
-bool singlelinkedlist::addToFirst(int no){
+template <typename T>
+bool singlelinkedlist<T>::addToFirst(T value){
   try{
-    if (head==NULL) head=tail=makeNode(no , NULL);
-    else head = makeNode(no, head);
+    if (head==nullptr) head=tail=makeNode(value, nullptr);
+    else head = makeNode(value, head);
+    size++;
     return true;
   } catch(const std::exception x){return false;}
 }
   // Add to End
-bool singlelinkedlist::addToEnd(int no){
+template <typename T>
+bool singlelinkedlist<T>::addToEnd(T value){
   try{
-    if (head==NULL) head=tail=makeNode(no , NULL);
+    if (head==NULL) head=tail=makeNode(value, nullptr);
     else{
-      e = makeNode(no,   NULL);
+      e = makeNode(value, nullptr);
       tail->next = e;
       tail = e;
     }
+    size++;
     return true;
   } catch(const std::exception x){ return false;}
 }
   // Add to Mid
-bool singlelinkedlist::addToMid(int no, int index){
+template <typename T>
+bool singlelinkedlist<T>::addToMid(int index, T value){
   try{
-    if (head==NULL) {
-      head=tail=makeNode(no , NULL);
+    if (index < 0 || index >= size) {
+      throw std::out_of_range("Index out of range");
+    }
+    if (index==0) {
+      addToFirst(value);
       return true;
-    }
-    else{
-      for (e = head; e->next!=NULL; e= e->next){
-        if (e->index!=index) continue;
-        e->next = makeNode(no, e->next);
-        return true;
+    }else if(index==size-1){
+      addToEnd(value);
+      return true;
+    }else{
+      node<T>* temp = head;
+      for (int i = 0; i < index - 1; i++) {
+          temp = temp->next;
       }
-      return false;
+      temp->next = makeNode(value, temp->next);
+      // e->next = temp->next;
+      // temp->next = e;
     }
+    size++;
     return true;
   } catch(const std::exception x){return false;}
 }
 
 // Delete Element
-bool singlelinkedlist::delFromFirst(){
+template <typename T>
+bool singlelinkedlist<T>::delFromFirst(){
   try{
-    if (head==NULL) return false;
+    if (head==nullptr) return false;
     e = head;
     head=head->next;
     delete e;
+    size--;
     return true;
   } catch(const std::exception x){return false;}
 }
-bool singlelinkedlist::delFromEnd(){
+template <typename T>
+bool singlelinkedlist<T>::delFromEnd(){
   try{
-    if (head==NULL) return false;
+    if (head==nullptr) return false;
     if (head==tail){
       e=head;
-      head=tail=NULL;
+      head=tail=nullptr;
       delete e;
+      size--;
+      return true;    
+    }else{
+      e=head;
+      while ((e->next!=tail)) e = e->next;
+      tail = e;
+      e= e->next;
+      tail->next=NULL;
+      delete e;
+      size--;
+      return true;
     }
-    e=head;
-    while ((e->next!=tail)) e = e->next;
-    tail = e;
-    e= e->next;
-    tail->next=NULL;
-    delete e;
-    return true;
   } catch(const std::exception x){return false;}
 }
-bool singlelinkedlist::delFromMid(int index){
+template <typename T>
+bool singlelinkedlist<T>::delFromMid(int index){
   try{
-    if (head==NULL) return false;
-    for (e = head; e!=NULL; e= e->next){
-      if (e->next->index!=index) continue;
-      node *beforDelElement;
-      beforDelElement = e;
-      e= e->next;
-      beforDelElement->next = e->next;
+    if (index < 0 || index >= size)
+      throw std::out_of_range("Index out of range");
+    if (index == 0) 
+      delFromFirst();
+    else if (index == size - 1)
+      delFromEnd();
+    else{
+      node<T>* temp = head;
+      for (int i = 0; i < index - 1; i++)
+        temp = temp->next;
+      e= temp->next;
+      temp->next = e->next;
       delete e;
+      size--;
       return true;
     }
     return false;
-    
   } catch(const std::exception x){return false;}
 }
 
 // print Elements
-bool singlelinkedlist::PrintList(){
+template <typename T>
+bool singlelinkedlist<T>::PrintList(){
   try{
+    int index=0;
     e=head;
     while (e!=NULL){
-      cout<< e<< " is "<< e->index <<endl;
+      cout <<index <<": " <<e->data <<endl;
       e= e->next;
+      index++;
     }
     return true;
   }
   catch(const std::exception x) {return false;}
 }
 // get array length
-int singlelinkedlist::getLength(){
-  e=head;
-  int i=0;
-  while (e!=NULL){
-    i++;
-    e= e->next;
-  }
-  return i;
+template <typename T>
+int singlelinkedlist<T>::getLength(){
+  return size;
 }
-
+/*
 // Additional methods
 // swab 
 void swabber(int &no, int &no2){
@@ -174,3 +208,4 @@ bool singlelinkedlist::revert(){
     std::cerr << e.what() << '\n';
   }
 }
+*/

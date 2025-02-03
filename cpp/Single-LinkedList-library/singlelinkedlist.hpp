@@ -1,34 +1,42 @@
 #include <iostream>
 using namespace std;
 
-#ifndef Date_h
-#define Date_h
+#ifndef singlelinkedlist_h
+#define singlelinkedlist_h
 
-struct node{
-  int index;
-  node* next;  
+template <typename T>
+class node{
+public:
+  T data;
+  node<T>* next;  
 };
 
 
+template <typename T>
 class singlelinkedlist{
 private:
-  node *head=NULL, *tail=NULL, *e;
+  node<T> *head;
+  node<T> *tail;
+  node<T> *e;
+  int size;
 public:
+  singlelinkedlist();
+  // ~singlelinkedlist();
   // Make Element
-  node* makeNode(int no, node* next); // done
+  node<T>* makeNode(T& value, node<T>* next); // done
   // Add Fuction
-  bool addToFirst(int no); // done
-  bool addToEnd(int no);  // done
-  bool addToMid(int no, int index);  // done
+  bool addToFirst(T value); // done
+  bool addToEnd(T value);  // done
+  bool addToMid(int index, T value);  // done
   // Delete Element
   bool delFromFirst(); // done
   bool delFromMid(int index); // now
   bool delFromEnd(); // done
   // Print Element
   bool PrintList(); // done
+  // Get elements
   // get Length
   int getLength(); // done
-
   // Additional Methods
   bool orderElements();
   bool revert();
