@@ -1,5 +1,4 @@
 <p align="center">
-  <!-- <img src="./logo.png" /> -->
   <h1 align="center"><a href=""> Data structure lib </a></h1>
   <p align="center">
     Data structure library by C++.
@@ -15,7 +14,7 @@
   - [what I learned](#what-i-learned)
 - [Author](#author)
 - [Special Thanks](#special-thanks)
-<!-- Over Look the projects -->
+
 ## Overview
 
 ### Quick Introduction
@@ -68,6 +67,8 @@ hello there, here is a library that I build while learning data structure in NU 
 ## My process
 ### Built with
   - cpp
+  - Java
+  - Python
   - pointer
   - class
   - struct
