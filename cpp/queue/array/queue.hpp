@@ -8,8 +8,9 @@ using namespace std;
 template <typename T>
 class queue{
 private:
-  int size, top=-1; 
-  T myQueue[size];
+  int size;
+  int top=-1; 
+  T* myQueue;
 public:
   // stackArray(int size);
   queue(int size);

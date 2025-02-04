@@ -3,6 +3,7 @@
 template <typename T>
 stackArray<T>::stackArray(int s){
   size = s;
+  stack = new T[size];
 }
 
 // push

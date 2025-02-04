@@ -14,7 +14,7 @@ template <typename T>
 class stackArray{
 private:
   int size, top=-1;
-  T stack[size];
+  T *stack;
 public:
   stackArray(int size);
   // Add Fuction

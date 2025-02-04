@@ -15,7 +15,7 @@ bool stack<T>::push(T value){
 template <typename T>
 bool stack<T>::pop(){
   try{
-    myStack.deleteFromEnd();
+    myStack.delFromEnd();
     return true;
   } catch(const std::exception x){return false;}
 }

@@ -3,5 +3,6 @@
 using namespace std;
 
 int main(){
+  queue<int> myQueue(10);
   
 }

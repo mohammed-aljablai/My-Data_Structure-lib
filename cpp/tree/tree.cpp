@@ -190,7 +190,7 @@ bool tree<T>::isRootExist(T value){
     return isRootExist(mainRoot, value);
   }
   catch(const std::exception& e){
-    return false
+    return false;
   }
 }
 
