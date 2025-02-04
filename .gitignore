@@ -1,3 +1,4 @@
 /.vscode
 *.exe
 /java/DataStrucure/nbproject/private/
+/java/DataStrucure/build/
