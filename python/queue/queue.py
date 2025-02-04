@@ -15,4 +15,3 @@ class Queue:
 
     def get_length(self):
         return self.myQueue.get_length()
-

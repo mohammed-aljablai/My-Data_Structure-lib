@@ -1,4 +1,4 @@
-from double_linked_list import DoubleLinkedList
+from doubleList import DoubleLinkedList;
 
 
 dll = DoubleLinkedList()

@@ -1,4 +1,4 @@
-from queue import Queue
+from queue import Queue;
 
 q = Queue()
 q.enqueue(5)

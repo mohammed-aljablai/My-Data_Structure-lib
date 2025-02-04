@@ -1,4 +1,4 @@
-from singleList import SingleList;
+from singleList import SingleLinkedList;
 
 sll = SingleLinkedList()
 
